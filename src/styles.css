@@ -1,0 +1,202 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-orange: var(--brand-orange);
+  --color-gold: var(--gold);
+  --color-whatsapp: var(--whatsapp);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Dark luxury */
+  --background: oklch(0.13 0.02 250);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.18 0.025 250);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.16 0.025 250);
+  --popover-foreground: oklch(0.97 0.005 250);
+
+  --primary: oklch(0.65 0.18 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.22 0.03 250);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.22 0.02 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+  --accent: oklch(0.7 0.18 50);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.65 0.18 250);
+
+  --brand-blue: oklch(0.62 0.18 252);
+  --brand-orange: oklch(0.72 0.18 50);
+  --gold: oklch(0.82 0.14 85);
+  --whatsapp: oklch(0.72 0.18 145);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.62 0.18 252), oklch(0.72 0.18 50));
+  --gradient-glow: radial-gradient(ellipse at center, oklch(0.62 0.18 252 / 0.35), transparent 70%);
+  --gradient-hero: radial-gradient(ellipse at 20% 20%, oklch(0.4 0.18 252 / 0.45), transparent 60%),
+                   radial-gradient(ellipse at 80% 80%, oklch(0.5 0.18 50 / 0.35), transparent 60%);
+
+  --shadow-glow-blue: 0 0 60px -10px oklch(0.62 0.18 252 / 0.55);
+  --shadow-glow-orange: 0 0 60px -10px oklch(0.72 0.18 50 / 0.55);
+  --shadow-glow-green: 0 0 50px -8px oklch(0.72 0.18 145 / 0.6);
+  --shadow-luxury: 0 30px 80px -20px oklch(0 0 0 / 0.6), 0 0 1px oklch(1 0 0 / 0.1) inset;
+}
+
+.dark {
+  --background: oklch(0.13 0.02 250);
+  --foreground: oklch(0.97 0.005 250);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection { background: oklch(0.62 0.18 252 / 0.4); }
+}
+
+/* ---- Luxury utilities ---- */
+
+@utility glass {
+  background: oklch(1 0 0 / 0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+
+@utility glass-strong {
+  background: oklch(0.18 0.025 250 / 0.7);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.1);
+}
+
+@utility text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background: var(--gradient-brand);
+}
+
+@utility bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+@utility shadow-glow-blue { box-shadow: var(--shadow-glow-blue); }
+@utility shadow-glow-orange { box-shadow: var(--shadow-glow-orange); }
+@utility shadow-glow-green { box-shadow: var(--shadow-glow-green); }
+@utility shadow-luxury { box-shadow: var(--shadow-luxury); }
+
+@utility hover-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-luxury);
+  }
+}
+
+@utility noise {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -30px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 20px); }
+}
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@utility animate-float { animation: float 12s ease-in-out infinite; }
+@utility animate-float-slow { animation: float-slow 18s ease-in-out infinite; }
+@utility animate-ripple { animation: ripple 2.4s cubic-bezier(0,0,0.2,1) infinite; }
+@utility animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+@utility shimmer-text {
+  background: linear-gradient(90deg, oklch(0.97 0 0) 0%, oklch(0.7 0.15 252) 50%, oklch(0.97 0 0) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
